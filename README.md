@@ -1,42 +1,25 @@
-Cozmac Iulian 325CD
-Detalii despre structura temei:  	
-Am folosit scheletul de cod din laboratorul 9 cu mici schimbari in unele funcții.
-Codul se execută într-o buclă while infinită, în care așteaptă comenzi de la utilizator de la tastatură. Comenzile suportate sunt:
+Project Overview:
+The project operates within an infinite while loop, awaiting user commands from the keyboard. These commands, along with their functionalities, are detailed below:
 
-"register" - pentru înregistrarea unui cont nou:
-	- citesc datele cerute de la tastatura si le scriu in json;
-  	- compun un mesaj de post si trimit mesajul la server;
-  	- primesc si afisez raspunsul.
-"login" - pentru autentificare:
-	- citesc datele de la tastatura si le scriu json
-  	- salvez cookieul;
-  	- trimit mesajul la server, primesc si afisez raspunsul
-"enter_library" - pentru solicitarea de acces în bibliotecă:
-	- trimit un mesaj de get cu cookieul salvat
-  	- primesc un raspuns si salvez jwtul;
-  	- afisez raspunsul de la server.
-"get_books" - pentru afișarea informațiilor sumare despre cărți:
-	- trimit un mesaj de get cu cookieul salvat,
-  	sa demonstrez ca am acces
-  	- primesc un raspuns de la server si il afisez.
-"get_book" - pentru afișarea detaliilor despre o carte:
-	- citesc de la tastatura un id;
-  	- trimit mesajul de get cu idul citit la server;
-  	- primesc raspuns si afisez.
-"add_book" - pentru adăugarea unei cărți noi în bibliotecă:
-	- citesc toate datele de la tastatura;
-  	- le scriu in json;
-  	- compun mesajul si il trimit catre server;
-  	- primesc raspuns si afisez.
-"delete_book" - pentru ștergerea unei cărți din bibliotecă:
-	- citesc idul de la tastatura;
-  	- compun mesajul de delete cu id-ul citit si trimit catre server;
-  	- primesc raspuns si afisez.
-"logout" - pentru deconectare:
-	- inchid conexiunea.
-"exit" - pentru a ieși din aplicație:
-	- termin executia programlui.
+register: Registers a new account by collecting user input, writing it into a JSON file, composing a POST message, and sending it to the server. Displays the server's response.
 
-În codul din fisierul client.c am folosit in mare parte `fgets` pentru a citi de la tastura. Problema rândului nou am combatut-o cu copierea variabilei intr-una nouă și scaderea cu 1 din ea.
-Pentru fiecare comandă, se efectuează cereri HTTP către serverul specificat în codul sursă și se primește un răspuns de la server. Răspunsurile sunt afișate în consolă.
-Pentru a parsa răspunsurile primite de la server am folosit biblioteca cJSON. (Fșierele cJSON.c și cJSON.h)
+login: Handles user authentication by collecting input, saving the cookie, sending the message to the server, and displaying the response.
+
+enter_library: Requests access to the library by sending a GET message with the saved cookie, receiving a response, and displaying it.
+
+get_books: Retrieves and displays summary information about books by sending a GET message with the saved cookie to demonstrate access.
+
+get_book: Displays detailed information about a specific book by reading its ID from the keyboard, sending a GET message with the ID to the server, and displaying the response.
+
+add_book: Adds a new book to the library by reading input data, writing it into a JSON file, composing and sending the message to the server, and displaying the response.
+
+delete_book: Deletes a book from the library by reading its ID from the keyboard, composing a delete message with the ID, sending it to the server, and displaying the response.
+
+logout: Logs out by closing the connection.
+
+exit: Exits the application by terminating program execution.
+
+Implementation Details:
+Input handling: Utilizes fgets to read input from the keyboard, addressing the newline character issue by copying the variable and decrementing it by 1.
+Server Communication: Communicates with the server via HTTP requests and processes responses.
+Response Parsing: Utilizes the cJSON library (cJSON.c and cJSON.h files) to parse server responses.
